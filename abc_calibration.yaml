@@ -1,0 +1,31 @@
+# calibration.yaml for the ABC-Model (Fiering, 1967).
+#
+# KNOWN LIMITATION, disclosed honestly rather than silently ignored: the
+# real model has a cross-parameter constraint -- b must be in [0, 1-a],
+# not independently [0,1] -- see abcmodel.py's get_random_params() in the
+# original RRMPG source. This project's calibration.yaml format (see
+# docs/MODEL_PREREQUISITES.md) only supports independent per-parameter
+# bounds, so this constraint is NOT enforced by the calibration engine.
+# A search that lands on a+b > 1 is still mathematically well-defined
+# (the model doesn't crash), just outside the parameter space the
+# original author intended. Flagging this rather than either quietly
+# violating the real constraint or inventing a new calibration.yaml
+# feature (cross-parameter constraints) that no other model has needed.
+comparable_to_observed: true
+
+parameters:
+  - name: a
+    mode: scalar
+    config_key: a
+    bounds: [0.0, 1.0]
+    description: "fraction of precipitation recharging storage -- Fiering (1967)"
+  - name: b
+    mode: scalar
+    config_key: b
+    bounds: [0.0, 1.0]
+    description: "fraction of precipitation lost (e.g. to evapotranspiration) -- real constraint is [0, 1-a], not enforced here (see file header)"
+  - name: c
+    mode: scalar
+    config_key: c
+    bounds: [0.0, 1.0]
+    description: "storage recession/release coefficient -- Fiering (1967)"

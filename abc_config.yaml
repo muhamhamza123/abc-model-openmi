@@ -1,0 +1,9 @@
+# ABC-Model config -- everything abc_bridge_service.py needs to run.
+# a, b, c are the model's 3 real parameters (Fiering, 1967).
+a: 0.3
+b: 0.2
+c: 0.1
+forcingCsv: /Users/mujaved21/Desktop/data/forcing_real_7day.csv
+precipColumn: Prec_mm/d
+initialState: 0.0
+bridgeUrl: http://127.0.0.1:5061
